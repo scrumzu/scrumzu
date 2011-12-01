@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    <definition name="releaseList" extends="templateOneColumn">
+        <put-attribute name="title" value="Releases" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/releases/releaseActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/releases/releaseList.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/releases/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="releaseDetails" extends="templateTwoColumns">
+        <put-attribute name="title" value="Release details" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/releases/releaseActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/releases/releaseDetails.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/releases/releaseSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/releases/scripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/releases/releaseDetailsScripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/releases/burndownChartScripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="releaseForm" extends="templateTwoColumns">
+        <put-attribute name="actionMenu" value="/WEB-INF/views/releases/releaseActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/releases/releaseForm.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/releases/releaseSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/releases/scripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/releases/releaseFormScripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    
+    <definition name="releaseEditForm" extends="releaseForm">
+        <put-attribute name="title" value="Edit release"/>  
+    </definition>
+    
+    <definition name="releaseAddForm" extends="releaseForm">
+        <put-attribute name="title" value="Add release"/>    
+    </definition>
+</tiles-definitions>
+

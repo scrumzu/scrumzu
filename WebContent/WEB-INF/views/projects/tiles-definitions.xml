@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    <definition name="projectList" extends="templateTwoColumns">
+        <put-attribute name="title" value="Projects" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/projects/projectActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/projects/projectList.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/projects/projectSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/projects/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="projectDetails" extends="templateTwoColumns">
+        <put-attribute name="title" value="Project details" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/projects/projectActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/projects/projectDetails.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/projects/projectSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/projects/scripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/projects/attributeTableScripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+        <definition name="projectForm" extends="templateTwoColumns">
+        <put-attribute name="title" value="" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/projects/projectActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/projects/projectForm.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/projects/projectSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/projects/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    
+    <definition name="projectEditForm" extends="projectForm">
+        <put-attribute name="title" value="Edit project"/>  
+    </definition>
+    
+    <definition name="projectAddForm" extends="projectForm">
+        <put-attribute name="title" value="Add project"/>    
+    </definition>
+
+        <definition name="attributeAddForm" extends="templateTwoColumns">
+        <put-attribute name="title" value="Add attribute" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/projects/projectActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/projects/attributeForm.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/projects/projectSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/projects/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    
+</tiles-definitions>

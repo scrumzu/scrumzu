@@ -1,0 +1,15 @@
+TEMAT:
+Aplikacja wspomagająca planowanie i zarządzanie projektami w metodyce SCRUM
+
+NAZWA PROJEKTU:
+scrumzu
+
+UCZELNIA:
+Politechnika Wrocławska, Wydział Informatyki i Zarządzania
+Instytu Informatyki
+
+ZESPÓŁ: 
+- Sylwia Pelc,
+- Maciej Haliniak,
+- Tomasz Wierzowiecki,
+- Tomasz Muc

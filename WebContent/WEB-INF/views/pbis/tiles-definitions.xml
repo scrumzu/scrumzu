@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+    <definition name="pbiList" extends="templateOneColumn">
+        <put-attribute name="title" value="Backlog" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/pbis/pbiActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/pbis/pbiList.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/pbis/scripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/pbis/pbiTableScripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="pbiDetails" extends="templateTwoColumns">
+        <put-attribute name="title" value="PBI details" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/pbis/pbiActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/pbis/pbiDetails.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/pbis/pbiSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/pbis/scripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/pbis/pbiDetailsScripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="pbiForm" extends="templateTwoColumns">
+        <put-attribute name="actionMenu" value="/WEB-INF/views/pbis/pbiActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/pbis/pbiForm.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/pbis/pbiSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/pbis/scripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/pbis/pbiFormScripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    
+    <definition name="pbiEditForm" extends="pbiForm">
+        <put-attribute name="title" value="Edit PBI"/>  
+    </definition>
+    
+    <definition name="pbiAddForm" extends="pbiForm">
+        <put-attribute name="title" value="Add PBI"/>    
+    </definition>
+    
+    <definition name="pbiTable" template="/WEB-INF/views/pbis/pbiTable.jsp"></definition>
+</tiles-definitions>
+

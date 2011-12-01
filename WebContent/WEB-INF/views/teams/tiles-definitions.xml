@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    <definition name="teamList" extends="templateTwoColumns">
+        <put-attribute name="title" value="Teams" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/teams/teamActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/teams/teamList.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/teams/teamSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/teams/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="teamDetails" extends="templateTwoColumns">
+        <put-attribute name="title" value="Team details" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/teams/teamActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/teams/teamDetails.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/teams/teamSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/teams/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+        <definition name="teamForm" extends="templateTwoColumns">
+        <put-attribute name="title" value="" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/teams/teamActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/teams/teamForm.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/teams/teamSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/teams/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    
+    <definition name="teamEditForm" extends="teamForm">
+        <put-attribute name="title" value="Edit Team"/>  
+    </definition>
+    
+    <definition name="teamAddForm" extends="teamForm">
+        <put-attribute name="title" value="Add Team"/>    
+    </definition>
+</tiles-definitions>

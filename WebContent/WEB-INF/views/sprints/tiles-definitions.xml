@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    <definition name="sprintList" extends="templateOneColumn">
+        <put-attribute name="title" value="Sprints" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/sprints/sprintActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/sprints/sprintList.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/sprints/scripts.jsp"/>
+            <add-attribute value="/WEB-INF/views/sprints/sprintTableScripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="sprintDetails" extends="templateTwoColumns">
+        <put-attribute name="title" value="Sprint details" />
+        <put-attribute name="actionMenu" value="/WEB-INF/views/sprints/sprintActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/sprints/sprintDetails.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/sprints/sprintSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/sprints/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    <definition name="sprintForm" extends="templateTwoColumns">
+        <put-attribute name="actionMenu" value="/WEB-INF/views/sprints/sprintActionMenu.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/sprints/sprintForm.jsp" cascade="true"/>
+        <put-attribute name="subMenu" value="/WEB-INF/views/sprints/sprintSubmenu.jsp" cascade="true"/>
+        <put-list-attribute name="jsScripts">
+            <add-attribute value="/WEB-INF/views/sprints/scripts.jsp"/>
+        </put-list-attribute>
+    </definition>
+    
+    <definition name="sprintEditForm" extends="sprintForm">
+        <put-attribute name="title" value="Edit sprint"/>  
+    </definition>
+    
+    <definition name="sprintAddForm" extends="sprintForm">
+        <put-attribute name="title" value="Add sprint"/>    
+    </definition>
+</tiles-definitions>
+

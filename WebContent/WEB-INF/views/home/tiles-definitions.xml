@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    <definition name="home" extends="templateOneColumn">
+        <put-attribute name="title" value="Home" />
+        <put-attribute name="actionMenu" value="" />
+        <put-attribute name="mainMenu" value="" />
+        <put-attribute name="content" value="/WEB-INF/views/home/welcomePage.jsp" cascade="true"/>
+        <put-attribute name="errorPanel" value="/WEB-INF/views/security/loginFormErrors.jsp"/>
+    </definition>
+</tiles-definitions>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+
+
+	<security:global-method-security
+		secured-annotations="enabled" jsr250-annotations="enabled" />
+
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="warnLogCategory" value="errorLogs"></property>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="exceptions.ProjectNotFoundException">
+					projectNotFound
+				</prop>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="workItemValidator" class="model.workItems.WorkItemValidator"></bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</bean>
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/views/tiles-definitions.xml</value>
+				<value>/WEB-INF/views/users/tiles-definitions.xml</value>
+				<value>/WEB-INF/views/pbis/tiles-definitions.xml</value>
+				<value>/WEB-INF/views/teams/tiles-definitions.xml</value>
+				<value>/WEB-INF/views/home/tiles-definitions.xml</value>
+				<value>/WEB-INF/views/sprints/tiles-definitions.xml</value>
+				<value>/WEB-INF/views/projects/tiles-definitions.xml</value>
+				<value>/WEB-INF/views/releases/tiles-definitions.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="exceptionTranslator"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<tx:annotation-driven proxy-target-class="true" />
+
+	<mvc:annotation-driven />
+	<mvc:interceptors>
+		<bean id="webContentInterceptor"
+			class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<property name="cacheSeconds" value="0" />
+			<property name="useExpiresHeader" value="true" />
+			<property name="useCacheControlHeader" value="true" />
+			<property name="useCacheControlNoStore" value="true" />
+		</bean>
+	</mvc:interceptors>
+
+	<context:component-scan base-package="controllers, model, dao, daoImpl, services" />
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+</beans>
+

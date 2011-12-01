@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+	<http use-expressions="true" disable-url-rewriting="true"
+		create-session="always">
+		<form-login login-processing-url="/static/j_spring_security_check"
+			login-page="/" authentication-failure-url="/?error=true"
+			default-target-url="/projects" />
+		<logout logout-url="/static/j_spring_security_logout" />
+		<intercept-url pattern="/" access="permitAll"
+			requires-channel="http" />
+		<intercept-url pattern="/index" access="isAuthenticated()"
+			requires-channel="http" />
+		<intercept-url pattern="/resources/**" access="permitAll"
+			requires-channel="http" /> 
+		<intercept-url pattern="/users/**"
+			access="hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/**/pbis/*/edit"
+			access="hasAnyRole('ROLE_SCRUM_MASTER', 'ROLE_PRODUCT_OWNER')"
+			requires-channel="http" />
+		<intercept-url pattern="/**/teams/*/edit" access="hasRole('ROLE_SCRUM_MASTER')"
+			requires-channel="http" />
+		<intercept-url pattern="/**/teams/new" access="hasRole('ROLE_SCRUM_MASTER')"
+			requires-channel="http" />
+		<intercept-url pattern="/**/new" access="hasRole('ROLE_PRODUCT_OWNER')"
+			requires-channel="http" />
+		<intercept-url pattern="/**/edit" access="hasRole('ROLE_PRODUCT_OWNER')"
+			requires-channel="http" />
+		<intercept-url pattern="/**/pbis/ajax/**" access="isAuthenticated()"
+			requires-channel="http" />
+		<intercept-url pattern="/*/ajax/**" access="isAuthenticated()"
+			requires-channel="http" />
+		<intercept-url pattern="/**/pbis/ajax/*" access="isAuthenticated()"
+			requires-channel="http" />
+		<intercept-url pattern="/*/*/*" access="isAuthenticated()"
+			requires-channel="http" />
+		<intercept-url pattern="/*/*" access="isAuthenticated()"
+			requires-channel="http" />
+		<intercept-url pattern="/*" access="isAuthenticated()"
+			requires-channel="http" />
+	</http>
+
+    <beans:bean id="userDetailsService" class="services.ScrumzuUserDetailsService"></beans:bean>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder hash="sha">
+			     <salt-source user-property="salt"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+
+</beans:beans>   

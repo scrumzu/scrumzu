@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+
+<tiles-definitions>
+	<definition name="template" template="/WEB-INF/views/mainTemplate.jsp">
+		<put-attribute name="jsScripts" value="" />
+		<put-attribute name="title" value="" />
+		<put-attribute name="loginForm"
+			value="/WEB-INF/views/security/loginForm.jsp" />
+		<put-attribute name="mainMenu" value="/WEB-INF/views/mainMenu.jsp" />
+		<put-attribute name="actionMenu" value="" />
+		<put-attribute name="contentColumns" value="" />
+		<put-attribute name="errorPanel" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
+
+	<definition name="templateOneColumn" extends="template">
+		<put-attribute name="contentColumns"
+			value="/WEB-INF/views/templateOneColumn.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="errorPanel" value="" />
+	</definition>
+
+	<definition name="templateTwoColumns" extends="template">
+		<put-attribute name="contentColumns"
+			value="/WEB-INF/views/templateTwoColumns.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="subMenu" value="" />
+		<put-attribute name="errorPanel" value="" />
+	</definition>
+
+	<definition name="error" template="/WEB-INF/views/errors/error.jsp" />
+	<definition name="projectNotFound" template="/WEB-INF/views/errors/projectNotFound.jsp" />
+
+</tiles-definitions>
+
