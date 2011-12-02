@@ -17,9 +17,9 @@
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://spectre.dyndns-server.com/scrumzu"/>
-        <property name="username" value="julius"/>
-        <property name="password" value="dr.no"/>
+        <property name="url" value="jdbc:mysql://some.url.com"/>
+        <property name="username" value="username"/>
+        <property name="password" value="password"/>
     </bean>
     
     <bean id="sessionFactory"

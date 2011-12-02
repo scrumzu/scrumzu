@@ -39,6 +39,7 @@ import model.workItems.WorkItem;
  * @author TM
  * 
  */
+
 @Entity
 @Table(name = "PBIs")
 public class PBI {
@@ -162,80 +163,130 @@ public class PBI {
 		this.idPBI = idPBI;
 	}
 
-	/**Function for getting PBI type
+	/**Getter of PBI type
 	 * @return {@link Type}
 	 */
 	public Type getType() {
 		return type;
 	}
 
-	/**Function which sets PBI type
+	/**Setter of PBI type
 	 * @param type - enum value - {@link Type}
 	 */
 	public void setType(Type type) {
 		this.type = type;
 	}
 
+	/**Getter of project in which PBI is implemented
+	 * @return project {@link Project}
+	 */
 	public Project getProject() {
 		return project;
 	}
 
+	/**Setter of project in which PBI is implemented
+	 * @param project - project to set
+	 */
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
+	/**Setter of PBI id number
+	 * @param idPBI - unique id number
+	 */
 	public void setIdPBI(Long idPBI) {
 		this.idPBI = idPBI;
 	}
 
+
+	/**Getter of PBI id number
+	 * @return - id number
+	 */
 	public Long getIdPBI() {
 		return idPBI;
 	}
 
+	/**Getter of PBI title
+	 * @return PBI title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**Setter of PBI title
+	 * @param title - title to be set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+	/**Getter of PBI description
+	 * @return PBI description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**Setter of PBI description
+	 * @param description - text to be set as description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**Getter of PBI priority
+	 * @return priority - value set by Product Owner
+	 */
 	public int getPriority() {
 		return priority;
 	}
 
+	/**Setter of PBI priority
+	 * @param priority - number to be set
+	 */
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
 
+	/**Getter of date of creation
+	 * @return date of creation
+	 */
 	public Date getDateCreation() {
 		return dateCreation;
 	}
 
+	/**Setter for date of creation
+	 * @param dateCreation - date to be set
+	 */
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 
+	/**Getter for list of work items (PBI history records)
+	 * @return WorkItem list {@link WorkItem}
+	 */
 	public List<WorkItem> getWorkItems() {
 		return workItems;
 	}
 
+	/**Setter for project specific attributes, type: Double. Used in add/edit pbi form only
+	 * @param formDoubleAttributes - map containing attribute name and its numeric value
+	 */
 	public void setFormDoubleAttributes(Map<String, Double> formDoubleAttributes) {
 		this.formDoubleAttributes = formDoubleAttributes;
 	}
 
+	/**Setter for project specific attributes, type: String. Used in add/edit pbi form only
+	 * @param formDoubleAttributes - map containing attribute name and its text value
+	 */
 	public void setFormStringAttributes(Map<String, String> formStringAttributes) {
 		this.formStringAttributes = formStringAttributes;
 	}
 
+	/**Method for adding new Dobule atribute with its value to attributes collection
+	 * @param attribute - attribute to be added
+	 * @param value - value for chosen attribute
+	 */
 	public void setDoubleAttribute(Attribute attribute, double value) {
 		if (attribute == null) {
 			throw new NullPointerException();
@@ -243,14 +294,11 @@ public class PBI {
 		doubleAttributes.put(attribute, value);
 	}
 
-	public void setStringAttributes(Map<Attribute, String> stringAttributes) {
-		this.stringAttributes = stringAttributes;
-	}
 
-	public void setDoubleAttributes(Map<Attribute, Double> doubleAttributes) {
-		this.doubleAttributes = doubleAttributes;
-	}
-
+	/**Method for adding new Dobule atribute with its value to attributes collection
+	 * @param attribute - attribute to be added
+	 * @param value - value for chosen attribute
+	 */
 	public void setStringAttribute(Attribute attribute, String value) {
 		if (attribute == null || value == null) {
 			throw new NullPointerException();
@@ -258,22 +306,55 @@ public class PBI {
 		stringAttributes.put(attribute, value);
 	}
 
+	/**Setter of String attributes in given PBI. Allows you to entirely replace current map.
+	 * @param stringAttributes - new attribute-value map to be set
+	 */
+	public void setStringAttributes(Map<Attribute, String> stringAttributes) {
+		this.stringAttributes = stringAttributes;
+	}
+
+	/**Setter of Double attributes in given PBI. Allows you to entirely replace current map.
+	 * @param stringAttributes - new attribute-value map to be set
+	 */
+	public void setDoubleAttributes(Map<Attribute, Double> doubleAttributes) {
+		this.doubleAttributes = doubleAttributes;
+	}
+
+	/**Getter of chosen double attribute value
+	 * @param name - name of attribute
+	 * @return value of given attribute
+	 */
 	public double getDoubleAttribute(String name) {
 		return doubleAttributes.get(new Attribute(name, AttributeType.DOUBLE));
 	}
 
+	/**Getter of chosen string attribute value
+	 * @param name - name of attribute
+	 * @return value of given attribute
+	 */
 	public String getStringAttribute(String name) {
 		return stringAttributes.get(new Attribute(name, AttributeType.STRING));
 	}
 
+
+	/**Getter for map of all string attributes, specific for connected project.
+	 * @return map of string attributes and values
+	 */
 	public Map<Attribute, String> getStringAttributes() {
 		return stringAttributes;
 	}
 
+	/**Getter for map of all double attributes, specific for connected project.
+	 * @return map of string attributes and values
+	 */
 	public Map<Attribute, Double> getDoubleAttributes() {
 		return doubleAttributes;
 	}
 
+
+	/** Method to delete chosen attribute from either double attributes or string attributes map.
+	 * @param attribute - attribute to be deleted
+	 */
 	public void deleteAttribute(Attribute attribute) {
 		if (attribute.getType() == AttributeType.DOUBLE) {
 			doubleAttributes.remove(attribute);
@@ -282,10 +363,17 @@ public class PBI {
 		}
 	}
 
+	/**Setter of workItems list (PBI history records)
+	 * @param workItems - new list to be set
+	 */
 	public void setWorkItems(List<WorkItem> workItems) {
 		this.workItems = workItems;
 	}
 
+	/**Method used for proper PBI filtering in Backlog view
+	 * @param fieldName - considered field name of PBI or its WorkItem
+	 * @return value of chosen field
+	 */
 	public Object getValueByField(String fieldName) {
 		Object result="";
 
@@ -358,10 +446,16 @@ public class PBI {
 				+ " dateCreation=" + dateCreation + ", type=" + type + ", priority=" + priority + "]";
 	}
 
+	/**Getter of string attributes map, used in add/edit PBI form only
+	 * @return map of string attributes names and values
+	 */
 	public Map<String, String> getFormStringAttributes() {
 		return formStringAttributes;
 	}
 
+	/**Getter of double attributes map, used in add/edit PBI form only
+	 * @return map of double attributes names and values
+	 */
 	public Map<String, Double> getFormDoubleAttributes() {
 		return formDoubleAttributes;
 	}

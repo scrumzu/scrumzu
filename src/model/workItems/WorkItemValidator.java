@@ -31,7 +31,7 @@ public class WorkItemValidator implements Validator {
 			}
 			else{
 				if(wi.getStatus().equals(Status.COMMITTED)){
-					if(!wi.getSprint().getSprintStatus().equals(SprintStatus.STARTED)){
+					if(wi.getSprint().getSprintStatus().equals(SprintStatus.CREATED)){
 						result.addError(new SprintNotStartedException());
 					}
 				}

@@ -26,7 +26,7 @@ public class WorkItemDAOImpl extends DAOImpl implements WorkItemDAO   {
 	}
 
 	public void save(WorkItem workItem) {
-		currentSession().persist(workItem);
+		currentSession().save(workItem);
 		currentSession().flush();
 	}
 

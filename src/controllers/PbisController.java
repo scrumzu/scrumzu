@@ -201,6 +201,9 @@ public class PbisController extends AbstractInProjectController {
 		if (result.hasErrors()) {
 			model.addAttribute("op", op.toLowerCase());
 			initFormData(model, projectAlias, principal);
+			if(op.equals("Edit")){
+				includeDisabledSprints(pbi, model);
+			}
 			return new ModelAndView("pbi" + op + "Form", model.asMap());
 		}
 
@@ -275,14 +278,7 @@ public class PbisController extends AbstractInProjectController {
 		pbi.setFormDoubleAttributes(da);
 
 		model.addAttribute("pbi", pbi);
-		Sprint pbiLastSprint = pbi.getWorkItems().get(0).getSprint();
-		if (pbiLastSprint != null
-				&& pbiLastSprint.getSprintStatus().equals(SprintStatus.ENDED)) {
-			Long sid = pbi.getWorkItems().get(0).getSprint().getIdSprint();
-			List<Sprint> disabledSprints = new ArrayList<Sprint>();
-			disabledSprints.add(sprintService.getSprint(sid));
-			model.addAttribute("sprintsDisabled", disabledSprints);
-		}
+		includeDisabledSprints(pbi, model);
 		model.addAttribute("op", "edit");
 		initFormData(model, projectAlias, principal);
 		return new ModelAndView("pbiEditForm");
@@ -459,6 +455,22 @@ public class PbisController extends AbstractInProjectController {
 		model.addAttribute("sprints", sprintService
 				.getActiveSprintsForProject(projectService
 						.getProject(projectAlias)));
+	}
+
+	/**Method initializing data collection of disabled sprints, needed in PBI edit form.
+	 * @param pbi - PBI to be edited
+	 * @param model - model in MVC
+	 */
+	private void includeDisabledSprints(PBI pbi, Model model){
+		Sprint pbiLastSprint = pbi.getWorkItems().get(0).getSprint();
+		if (pbiLastSprint != null
+				&& pbiLastSprint.getSprintStatus().equals(SprintStatus.ENDED)) {
+			List<Sprint> disabledSprints = new ArrayList<Sprint>();
+			Long sid = pbi.getWorkItems().get(0).getSprint().getIdSprint();
+
+			disabledSprints.add(sprintService.getSprint(sid));
+			model.addAttribute("sprintsDisabled", disabledSprints);
+		}
 	}
 
 	/**

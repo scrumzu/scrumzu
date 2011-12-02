@@ -16,23 +16,8 @@
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
     http://www.springframework.org/schema/jee
     http://www.springframework.org/schema/jee/spring-jee.xsd">
-
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
-		name="url" value="jdbc:mysql://spectre.dyndns-server.com/scrumzu" /> <property 
-		name="username" value="julius" /> <property name="password" value="dr.no" 
-		/> </bean> 
-<!-- 	<bean id="dataSource" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!-- 		<property name="url" value="jdbc:mysql://localhost/scrumzu" /> -->
-<!-- 		<property name="username" value="root" /> -->
-<!-- 		<property name="password" value="" /> -->
-<!-- 	</bean> -->
-
-	<!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/mysql" resource-ref="true" 
-		/> -->
-
+	
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/mysql" resource-ref="true" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
