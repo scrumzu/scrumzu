@@ -1,7 +1,6 @@
 <div class="threecol">
 	<div class="insidecol">
-		<h3>ZPI 2011</h3>
-		Wroclaw University of Technology
+		<h3>2011 scrumzu</h3>
 	</div>
 </div>
 <div class="threecol">
@@ -30,10 +29,4 @@
 	</div>
 </div>
 <div class="threecol last" id="logotypes">
-	<div class="insidecol">
-		<a href="http://www.pwr.wroc.pl/"><img
-			src="/scrumzu/resources/img/pwr.png" class="left"></a> <a
-			href="http://www.nokiasiemensnetworks.com/"><img
-			src="/scrumzu/resources/img/nsn.png" class="left spacerL"></a>
-	</div>
 </div>

@@ -120,7 +120,7 @@ public class ProjectsControllerTest {
 		ReflectionTestUtils.setField(controller, "projectValidator",
 				projectValidator);
 		when(bindingResult.hasErrors()).thenReturn(true);
-		when(projectService.isProjectPresent(anyString())).thenReturn(true);
+		when(projectService.isProjectPresent(anyString(), anyLong())).thenReturn(true);
 		ReflectionTestUtils.setField(controller, "projectService",
 				projectService);
 

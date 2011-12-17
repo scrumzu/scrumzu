@@ -6,7 +6,6 @@ import java.util.Set;
 
 import model.projects.Attribute;
 import model.projects.Project;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -49,8 +48,13 @@ public class ProjectService {
 		return projectDao.getProjectAttributes(alias);
 	}
 
-	public boolean isProjectPresent(String alias) {
-		return projectDao.isProjectPresent(alias);
+	public boolean isProjectPresent(String alias, Long idProject) {
+		Long idDb = null;
+		Project project = projectDao.getProject(alias);
+		if(project != null){
+			idDb = project.getIdProject();
+		}
+		return idDb ==  null? false :  !idDb.equals(idProject);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)

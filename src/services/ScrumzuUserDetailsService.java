@@ -24,15 +24,15 @@ import dao.TeamDAO;
 @Service("userDetailsService")
 public class ScrumzuUserDetailsService implements UserDetailsService {
 
-	@Autowired 
+	@Autowired
 	private ScrumzuUserDAO userDao;
-	
+
 	@Autowired
 	private TeamDAO teamDao;
-	
+
 	@Autowired
 	private FilterDAO filterDao;
-	
+
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
 
@@ -42,7 +42,7 @@ public class ScrumzuUserDetailsService implements UserDetailsService {
 		}
 		return user;
 	}
-	
+
 	private List<ScrumzuUser> initializeAuthorities(List<ScrumzuUser> users) {
 		for(ScrumzuUser user : users){
 			Hibernate.initialize(user.getAuthorities());
@@ -58,7 +58,7 @@ public class ScrumzuUserDetailsService implements UserDetailsService {
 		}
 		return user;
 	}
-	
+
 	public List<ScrumzuUser> getScrumMasters() {
 		return initializeAuthorities(userDao.getScrumMasters());
 	}
@@ -83,7 +83,7 @@ public class ScrumzuUserDetailsService implements UserDetailsService {
 			userDao.delete(ids[i]);
 		}
 	}
-	
+
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void disableUsers(long[] ids) {
 		for (int i =0; i < ids.length; i++) {
@@ -101,14 +101,14 @@ public class ScrumzuUserDetailsService implements UserDetailsService {
 			userDao.update(user);
 		}
 	}
-	
+
 	public boolean isUsernameTaken(String username, Long idUser) {
 		Long idDb = null;
 		ScrumzuUser user = userDao.getUser(username);
 		if(user != null){
 			idDb = user.getIdUser();
 		}
-		return idDb ==  null? false :  idUser == idDb;
+		return idDb ==  null? false :  !idDb.equals(idUser);
 	}
 }
 

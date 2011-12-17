@@ -162,7 +162,7 @@ public class ProjectServiceTest {
 		Project project2 = projectService.getProject(alias);
 		assertEquals(project, project2);
 	}
-	
+
 	@Test
 	public void testGetProjectAttributes() {
 		String alias = "TEST";
@@ -176,12 +176,12 @@ public class ProjectServiceTest {
 	{
 		when(mockProjectDao.isProjectPresent(anyString())).thenReturn(false);
 		ReflectionTestUtils.setField(projectService, "projectDao", mockProjectDao);
-		assertFalse(projectService.isProjectPresent(""));
+		assertFalse(projectService.isProjectPresent("", anyLong()));
 	}
 	@Test
 	public void testDeleteProject()
 	{
-	
+
 
 		final List<Project> projects = new ArrayList<Project>();
 		for (int i = 1; i < 6; i++) {

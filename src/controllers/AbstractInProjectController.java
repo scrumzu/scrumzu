@@ -68,7 +68,7 @@ public abstract class AbstractInProjectController {
 	}
 
 	/**
-	 * Method adding chosen project alias intyo model container
+	 * Method adding chosen project alias into model container
 	 * 
 	 * @param projectAlias - chosen project alias
 	 * @return project alias in upper case
@@ -76,7 +76,7 @@ public abstract class AbstractInProjectController {
 	@ModelAttribute("chosenProjectAlias")
 	@PreAuthorize("isAuthenticated()")
 	public String getChosenProjectAlias(@PathVariable String projectAlias) {
-		if (!projectService.isProjectPresent(projectAlias)) {
+		if (!projectService.isProjectPresent(projectAlias, null)) {
 			throw new ProjectNotFoundException(projectAlias);
 		}
 		return projectAlias.toUpperCase();

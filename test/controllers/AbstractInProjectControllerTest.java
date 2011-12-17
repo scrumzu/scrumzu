@@ -2,6 +2,7 @@ package controllers;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class AbstractInProjectControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-	
+
 		controller = Mockito.mock(AbstractInProjectController.class,
 				Mockito.CALLS_REAL_METHODS);
 		MockitoAnnotations.initMocks(this);
@@ -92,7 +93,7 @@ public class AbstractInProjectControllerTest {
 		String projectAliasLowerCase = "xyz";
 		String projectAliasUpperCase = "XYZ";
 
-		when(mockProjectService.isProjectPresent(anyString())).thenReturn(true);
+		when(mockProjectService.isProjectPresent(anyString(), anyLong())).thenReturn(true);
 		ReflectionTestUtils.setField(controller, "projectService",
 				mockProjectService);
 
@@ -105,19 +106,10 @@ public class AbstractInProjectControllerTest {
 	@Test(expected = ProjectNotFoundException.class)
 	public void testGetChosenProjectAliasShouldThrowProjectNotFound(){
 		String projectAlias = "xyz";
-		
-		when(mockProjectService.isProjectPresent(anyString())).thenReturn(true);
+
+		when(mockProjectService.isProjectPresent(anyString(), anyLong())).thenReturn(false);
 		ReflectionTestUtils.setField(controller, "projectService",
 				mockProjectService);
-		String res = controller.getChosenProjectAlias(projectAlias);
-		assertEquals(projectAlias, res);
-
-
-		when(mockProjectService.isProjectPresent(anyString())).thenReturn(false);
-		try{
-			controller.getChosenProjectAlias(projectAlias);
-		}catch(Exception e){
-			assertTrue(e instanceof ProjectNotFoundException);
-		}
+		controller.getChosenProjectAlias(projectAlias);
 	}
 }

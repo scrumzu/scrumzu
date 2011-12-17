@@ -34,7 +34,7 @@ public class ProjectValidator implements Validator {
 				|| "index".equals(project.getAlias())) {
 			((BindingResult) errors).addError(new AliasIsReservedError(project
 					.getAlias()));
-		} else if (projectService.isProjectPresent(project.getAlias())) {
+		} else if (projectService.isProjectPresent(project.getAlias(), project.getIdProject())) {
 			((BindingResult) errors).addError(new AliasIsAlreadyTakenError(
 					"project", project.getAlias()));
 		}
